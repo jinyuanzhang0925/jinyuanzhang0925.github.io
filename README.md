@@ -56,9 +56,9 @@ categories: []
 
 目标仓库：`jinyuanzhang0925/jinyuanzhang0925.github.io`。
 
-在仓库 **Settings → Pages → Source** 选择 **GitHub Actions**，使用 `.github/workflows/pages.yml`。默认地址为 `https://jinyuanzhang0925.github.io/`。
+在仓库 **Settings → Pages → Source** 选择 **GitHub Actions**，使用 `.github/workflows/pages.yml`。正式地址为 `https://zhangjinyuan.top/`，GitHub 默认地址会跳转到正式域名。
 
-自定义域名切换的具体说明见 `MIGRATION.md`。完成域名绑定后，将 `site.json` 的 `url` 改为实际的 HTTPS 域名，重新构建，确保 canonical、RSS 与 sitemap 使用一致的地址。
+自定义域名的迁移记录见 `MIGRATION.md`。`site.json` 已使用正式 HTTPS 域名，canonical、RSS 与 sitemap 会自动保持一致。
 
 ## 迁移来源与校验
 
