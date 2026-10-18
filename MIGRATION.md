@@ -29,22 +29,17 @@
 
 旧仓库与本地 `legacy-site/` 保留原始文件。新站使用独立、干净的提交历史；迁移不删除旧仓库，不转移原 Issues、Stars 或 Pull Requests。
 
-## 自定义域名切换
+## 自定义域名切换（2026-10-18）
 
-先确认新账号 GitHub Pages 的默认地址可正常访问，再完成下列切换。
-
-1. 如旧账号已验证该域名，需由域名所有者在新账号 **Settings → Pages** 按 GitHub 给出的 TXT 记录验证 `zhangjinyuan.top`。
-2. 在旧仓库 **Settings → Pages** 移除 `zhangjinyuan.top` 的绑定。
-3. 在新仓库 **Settings → Pages → Custom domain** 添加 `zhangjinyuan.top`。
-4. 域名商中根域名 `@` 的 A 记录应指向 GitHub Pages 官方地址：`185.199.108.153`、`185.199.109.153`、`185.199.110.153`、`185.199.111.153`。若已为这些值，无需更改。
-5. `www` 的 CNAME 改为 `jinyuanzhang0925.github.io`。本次环境解析到的旧值是 `jeremy-zjy.github.io`，需要在域名商核对。
-6. 等待 GitHub DNS 检查、证书签发，启用 **Enforce HTTPS**。
-7. 把 `site.json` 的 `url` 改为 `https://zhangjinyuan.top`，提交后自动重新部署。
-8. 检查首页、一个中文旧文章 URL、搜索和 RSS。
-
-当前本地网络的根域名解析经过代理，返回 `198.18.*` 合成地址，不能据此认定公网 A 记录；请以域名商配置或可信公网 DNS 查询为准。
+- 新站已通过 GitHub Actions 发布到新账号的仓库。
+- 在新账号 Settings → Pages 完成 `zhangjinyuan.top` 的 TXT 所有权验证。验证同时释放了旧账号的 Pages 域名绑定，无需删除旧仓库。
+- 新仓库 Pages 自定义域名已设为 `zhangjinyuan.top`。
+- 阿里云根域名 `@` 的旧 A 记录 `192.30.252.153` 已替换为 GitHub Pages 官方的四个地址：`185.199.108.153`、`185.199.109.153`、`185.199.110.153`、`185.199.111.153`。
+- `www` 原有“境外 CNAME → jeremy-zjy.github.io”和“默认 A → 192.30.252.153”两条线路，均已改为 CNAME → `jinyuanzhang0925.github.io`。
+- DNS TTL 保持 10 分钟。保留 `_github-pages-challenge-jinyuanzhang0925` TXT 记录，以维持域名验证。
+- `site.json` 已改为 `https://zhangjinyuan.top`，供 canonical、RSS 和 sitemap 使用。
 
 GitHub 官方文档：
 
-- [创建 GitHub Pages 站点](https://docs.github.com/en/pages/getting-started-with-github-pages/creating-a-github-pages-site)
+- [验证域名与释放旧绑定](https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/verifying-your-custom-domain-for-github-pages)
 - [管理自定义域名](https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/managing-a-custom-domain-for-your-github-pages-site)
