@@ -1,0 +1,58 @@
+name: Build and deploy blog
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+concurrency:
+  group: pages
+  cancel-in-progress: false
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Import verified source package
+        if: hashFiles('site-import.zip') != ''
+        run: |
+          python - <<'PYIMPORT'
+          from pathlib import Path
+          import zipfile
+          with zipfile.ZipFile('site-import.zip') as archive:
+              for item in archive.infolist():
+                  destination = Path(item.filename)
+                  if destination.is_absolute() or '..' in destination.parts:
+                      raise SystemExit('Invalid archive member')
+                  if not item.filename.startswith('.github/workflows/'):
+                      archive.extract(item, '.')
+          Path('site-import.zip').unlink()
+          PYIMPORT
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add .
+          git commit -m "Import verified 22-article website and retain minimal Pages workflow"
+          git push
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+      - run: pip install -r requirements.txt
+      - run: python build.py
+      - run: python scripts/check_site.py
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Deploy
+        id: deployment
+        uses: actions/deploy-pages@v4
