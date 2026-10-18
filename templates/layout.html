@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <title>{{title}}</title>
+  <meta name="description" content="{{description}}">
+  <link rel="canonical" href="{{canonical}}">
+  <meta property="og:type" content="{{og_type}}">
+  <meta property="og:title" content="{{title}}">
+  <meta property="og:description" content="{{description}}">
+  <meta property="og:url" content="{{canonical}}">
+  <meta property="og:site_name" content="右郁石">
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+  <link rel="alternate" type="application/atom+xml" title="右郁石 · RSS" href="/atom.xml">
+  <script>try{document.documentElement.dataset.theme=localStorage.getItem('theme')||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light')}catch(e){}</script>
+  <link rel="stylesheet" href="/assets/style.css">
+  <script src="/assets/site.js" defer></script>
+  {{extra_head}}
+</head>
+<body>
+  <a class="skip-link" href="#main">跳到正文</a>
+  <header class="site-header wrap">
+    <a class="wordmark" href="/" aria-label="右郁石，返回首页"><span class="brand-symbol" aria-hidden="true">右</span>右郁石<span class="brand-dot">.</span></a>
+    <nav aria-label="主导航">
+      <a href="/" {{home_active}}>首页</a>
+      <a href="/posts/" {{posts_active}}>写作</a>
+      <a href="/about/" {{about_active}}>关于</a>
+    </nav>
+    <div class="header-tools">
+      <button class="search-trigger" type="button" aria-label="搜索文章" aria-haspopup="dialog"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 5 5"/></svg><span>搜索文章</span><kbd>⌘ K</kbd></button>
+      <button class="theme-toggle icon-button" type="button" aria-label="切换深色模式" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M20.8 13A9 9 0 0 1 11 3.2 9 9 0 1 0 20.8 13Z"/></svg></button>
+    </div>
+  </header>
+  <main id="main" class="wrap">{{content}}</main>
+  <footer class="site-footer wrap">
+    <div class="footer-top"><a href="/" class="footer-brand">右郁石<span class="brand-dot">.</span></a><p>把思考写下来，让时间留下痕迹。</p><a class="back-top" href="#">回到顶部 ↑</a></div>
+    <div class="footer-bottom"><span>© {{year}} 右郁石 · 自 2019 年开始记录</span><div><a href="{{github}}" target="_blank" rel="noopener noreferrer">GitHub ↗</a><a href="/atom.xml">RSS ↗</a></div></div>
+  </footer>
+  <dialog class="search-dialog" aria-labelledby="search-title">
+    <div class="search-dialog-top"><h2 id="search-title">搜索文章</h2><button class="close-search icon-button" type="button" aria-label="关闭搜索">×</button></div>
+    <label class="sr-only" for="search-input">输入标题、正文或话题关键词</label>
+    <input id="search-input" type="search" placeholder="输入标题、正文或话题关键词…" autocomplete="off">
+    <p id="search-status" class="search-status" role="status">搜索这些年写下的文字。</p>
+    <div id="search-results" class="search-results"></div>
+    <div class="search-hint">输入关键词搜索 · <kbd>Esc</kbd> 关闭</div>
+  </dialog>
+</body>
+</html>
