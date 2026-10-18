@@ -38,6 +38,8 @@
 - `www` 原有“境外 CNAME → jeremy-zjy.github.io”和“默认 A → 192.30.252.153”两条线路，均已改为 CNAME → `jinyuanzhang0925.github.io`。
 - DNS TTL 保持 10 分钟。保留 `_github-pages-challenge-jinyuanzhang0925` TXT 记录，以维持域名验证。
 - `site.json` 已改为 `https://zhangjinyuan.top`，供 canonical、RSS 和 sitemap 使用。
+- GitHub DNS 检查通过，HTTPS 证书已签发，已开启 Enforce HTTPS；正式域名的 HTTPS 首页访问正常。
+- 已验证中文旧文章 URL、站内搜索、含 22 篇文章的线上 RSS，以及 320px 手机宽度下的数学公式（无整页横向溢出）。
 
 GitHub 官方文档：
 
