@@ -930,6 +930,8 @@ svg {
   margin:30px 0
 }
 .prose mjx-container {
+  display:inline-block;
+  vertical-align:middle;
   max-width:100%;
   overflow-x:auto;
   overflow-y:hidden
